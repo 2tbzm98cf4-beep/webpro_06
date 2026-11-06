@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>CITの食堂メニューを追加</title>
+</head>
+<body>
+  <h1>CITの食堂メニューを追加</h1>
+  <form action="/menu_add" method="post">
+    <p><label>メニュー名 <input type="text" name="name" maxlength="80" required></label></p>
+    <p><label>分類 <input type="text" name="category" maxlength="30" required></label></p>
+    <p><label>価格（円） <input type="number" name="price" min="1" max="99999" step="1" required></label></p>
+    <button type="submit">登録する</button>
+  </form>
+  <p><a href="/menu">食堂メニュー一覧へ戻る</a></p>
+</body>
+</html>

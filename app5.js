@@ -139,4 +139,21 @@ app.get("/menu", (req, res) => {
   res.render("menu", { data: menu });
 });
 
+app.post("/menu_add", express.urlencoded({ extended: false }), (req, res) => {
+  const { name, category, price } = req.body;
+  if (typeof name !== "string" || !name.trim() || name.trim().length > 80 ||
+      typeof category !== "string" || !category.trim() || category.trim().length > 30 ||
+      typeof price !== "string" || !/^[0-9]{1,5}$/.test(price) || Number(price) < 1) {
+    return res.status(400).send("メニュー名（80文字以内）、分類（30文字以内）、価格（1〜99999円の整数）を入力してください。");
+  }
+
+  menu.push({
+    id: menu.length + 1,
+    name: name.trim(),
+    category: category.trim(),
+    price: Number(price)
+  });
+  res.redirect(303, "/menu");
+});
+
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
