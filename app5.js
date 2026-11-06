@@ -125,4 +125,18 @@ app.post("/keiyo_add", express.urlencoded({ extended: false }), (req, res) => {
   res.redirect(303, "/keiyo");
 });
 
+// CITサービスの新習志野学生食堂1階の献立から、演習用に一部を抜粋。
+const menu = [
+  { id: 1, name: "定番カレー", category: "カレー", price: 250 },
+  { id: 2, name: "サラダ付カレー", category: "カレー", price: 300 },
+  { id: 3, name: "大盛カレー", category: "カレー", price: 350 },
+  { id: 4, name: "唐揚（単品）", category: "単品", price: 150 },
+  { id: 5, name: "コロッケ", category: "単品", price: 50 },
+  { id: 6, name: "サラダ", category: "単品", price: 50 }
+];
+
+app.get("/menu", (req, res) => {
+  res.render("menu", { data: menu });
+});
+
 app.listen(8080, () => console.log("Example app listening on port 8080!"));

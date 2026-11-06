@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>CITの食堂メニュー</title>
+</head>
+<body>
+  <h1>CITの食堂メニュー</h1>
+  <p>千葉工業大学 新習志野学生食堂1階のメニュー例（授業用）</p>
+  <table>
+    <thead>
+      <tr><th scope="col">ID</th><th scope="col">メニュー名</th><th scope="col">分類</th><th scope="col">価格（円）</th></tr>
+    </thead>
+    <tbody>
+      <% for (const item of data) { %>
+        <tr><td><%= item.id %></td><td><%= item.name %></td><td><%= item.category %></td><td><%= item.price %></td></tr>
+      <% } %>
+    </tbody>
+  </table>
+  <p>出典（初期データ） <a href="https://www.cit-s.com/dining/">CITサービス 学生食堂</a>（新習志野学生食堂1階、11月2日〜7日の献立）</p>
+</body>
+</html>
