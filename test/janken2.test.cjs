@@ -10,9 +10,10 @@ const root = path.join(__dirname, '..');
 // CPUの手を固定し、実際のapp5.jsのルートを全組み合わせで検証する。
 function play(query, cpuIndex) {
   const routes = {};
-  const app = { set() {}, use() {}, get(url, handler) { routes[url] = handler; }, listen() {} };
+  const app = { set() {}, use() {}, get(url, handler) { routes[url] = handler; }, post() {}, listen() {} };
   const express = () => app;
   express.static = () => {};
+  express.urlencoded = () => {};
   const math = Object.create(Math);
   math.random = () => (cpuIndex + 0.5) / 3;
   vm.runInNewContext(fs.readFileSync(path.join(root, 'app5.js'), 'utf8'), {

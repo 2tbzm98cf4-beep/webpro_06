@@ -94,5 +94,35 @@ app.get("/janken2", (req, res) => {
   total += 1;
   res.render('janken2', { your: hand, cpu, judgement, win, total });
 });
+const station = [
+  { id: 1, code: "JE01", name: "東京駅" },
+  { id: 2, code: "JE07", name: "舞浜駅" },
+  { id: 3, code: "JE12", name: "新習志野駅" },
+  { id: 4, code: "JE13", name: "幕張豊砂駅" },
+  { id: 5, code: "JE14", name: "海浜幕張駅" },
+  { id: 6, code: "JE05", name: "新浦安駅" }
+];
+
+app.get("/keiyo", (req, res) => {
+  res.render("db2", { data: station });
+});
+
+app.get("/keiyo/plain", (req, res) => {
+  res.render("db1", { data: station });
+});
+
+app.post("/keiyo_add", express.urlencoded({ extended: false }), (req, res) => {
+  const { code, name, next } = req.body;
+  if (typeof code !== "string" || !code.trim() ||
+      typeof name !== "string" || !name.trim()) {
+    return res.status(400).send("駅コードと駅名を入力してください。");
+  }
+
+  station.push({ id: station.length + 1, code: code.trim(), name: name.trim() });
+  if (next === "form") {
+    return res.redirect(303, "/public/keiyo_add.html");
+  }
+  res.redirect(303, "/keiyo");
+});
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>京葉線の駅</title>
+</head>
+<body>
+  <h1>京葉線の駅</h1>
+  <p><a href="/public/keiyo_add.html">駅を追加</a> / <a href="/keiyo/plain">列挙で見る</a></p>
+  <table>
+    <thead>
+      <tr><th scope="col">ID</th><th scope="col">駅コード</th><th scope="col">駅名</th></tr>
+    </thead>
+    <tbody>
+      <% for (const row of data) { %>
+        <tr><td><%= row.id %></td><td><%= row.code %></td><td><%= row.name %></td></tr>
+      <% } %>
+    </tbody>
+  </table>
+</body>
+</html>
