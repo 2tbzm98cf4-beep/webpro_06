@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ラジオボタンでじゃんけん</title>
+</head>
+<body>
+    <h1>じゃんけんの結果</h1>
+    <p>あなたの手は<%= your %>です．</p>
+    <p>コンピュータは<%= cpu %>です．</p>
+    <p>判定：<%= judgement %></p>
+    <p>現在<%= total %>試合中<%= win %>勝しています．</p>
+    <hr>
+    <form action="/janken2" method="get">
+        <fieldset>
+            <legend>次は何を出す？</legend>
+            <input type="radio" name="hand" id="gu" value="グー" required>
+            <label for="gu">グー</label>
+            <input type="radio" name="hand" id="choki" value="チョキ" required>
+            <label for="choki">チョキ</label>
+            <input type="radio" name="hand" id="pa" value="パー" required>
+            <label for="pa">パー</label>
+        </fieldset>
+        <input type="hidden" name="win" value="<%= win %>">
+        <input type="hidden" name="total" value="<%= total %>">
+        <input type="submit" value="じゃんけん　ポン">
+    </form>
+    <p><a href="/public/janken2.html">成績をリセットして最初から遊ぶ</a></p>
+</body>
+</html>

@@ -4,7 +4,8 @@
   "description": "Node.js example server starter project",
   "main": "src/index.js",
   "scripts": {
-    "start": "node app4.js"
+    "start": "node app5.js",
+    "test": "node --test test/*.test.cjs"
   },
   "dependencies": {
     "ejs": "^3.1.10",

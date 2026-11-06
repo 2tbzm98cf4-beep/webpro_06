@@ -63,4 +63,36 @@ app.get("/janken", (req, res) => {
   res.render( 'janken', display );
 });
 
+// 第7回：元の /janken を残し、ラジオボタン版を追加する。
+app.get("/janken2", (req, res) => {
+  const hand = req.query.hand;
+  const hands = ['グー', 'チョキ', 'パー'];
+  if (!hands.includes(hand)) {
+    return res.status(400).send('グー・チョキ・パーから手を選んでください。');
+  }
+
+  // GETで届く値は文字列なので、計算の前に数値にする。
+  let win = Number(req.query.win ?? 0);
+  let total = Number(req.query.total ?? 0);
+  if (!Number.isSafeInteger(win) || !Number.isSafeInteger(total) ||
+      win < 0 || total < win || total >= Number.MAX_SAFE_INTEGER) {
+    return res.status(400).send('勝利数と対戦数が正しくありません。');
+  }
+
+  const cpu = hands[Math.floor(Math.random() * 3)];
+  let judgement;
+  if (hand === cpu) {
+    judgement = 'あいこ';
+  } else if ((hand === 'グー' && cpu === 'チョキ') ||
+             (hand === 'チョキ' && cpu === 'パー') ||
+             (hand === 'パー' && cpu === 'グー')) {
+    judgement = '勝ち';
+    win += 1;
+  } else {
+    judgement = '負け';
+  }
+  total += 1;
+  res.render('janken2', { your: hand, cpu, judgement, win, total });
+});
+
 app.listen(8080, () => console.log("Example app listening on port 8080!"));

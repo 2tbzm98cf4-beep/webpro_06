@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ラジオボタンでじゃんけん</title>
+</head>
+<body>
+    <h1>ラジオボタンでじゃんけん</h1>
+    <form action="/janken2" method="get">
+        <fieldset>
+            <legend>何を出す？</legend>
+            <input type="radio" name="hand" id="gu" value="グー" required>
+            <label for="gu">グー</label>
+            <input type="radio" name="hand" id="choki" value="チョキ" required>
+            <label for="choki">チョキ</label>
+            <input type="radio" name="hand" id="pa" value="パー" required>
+            <label for="pa">パー</label>
+        </fieldset>
+        <input type="hidden" name="win" value="0">
+        <input type="hidden" name="total" value="0">
+        <input type="submit" value="じゃんけん　ポン">
+    </form>
+</body>
+</html>
